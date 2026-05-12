@@ -1,0 +1,164 @@
+{
+    "resolution": [512, 512],
+    "AA_jitter": false, 
+    "AA_samples": 1,
+    "ambient": [0.1, 0.1, 0.1],
+    "camera": {
+        "position": [0.0, 7.0, -7.0],
+        "lookAt": [0.0, 0.0, 0.0],
+        "up": [0.0, 1.0, 0.0],
+        "fov": 45.0
+    },
+    "materials": [
+        {
+            "name": "red",             
+            "diffuse": [1.0, 0.0, 0.0], 
+            "specular": [0.8, 0.8, 0.8],
+            "shininess": 32
+        },
+        {
+            "name": "blue", 
+            "diffuse": [0.0, 0.0, 1.0], 
+            "specular": [0.8, 0.8, 0.9],
+            "shininess": 32
+        },
+        {
+            "name": "green", 
+            "diffuse": [0.0, 1.0, 0.0], 
+            "specular": [0.8, 0.8, 0.9],
+            "shininess": 32
+        },
+        {
+            "name": "black", 
+            "diffuse": [0.0, 0.0, 0.0], 
+            "specular": [0.0, 0.0, 0.0],
+            "shininess": 0
+        },
+        {
+            "name": "white", 
+            "diffuse": [1.0, 1.0, 1.0], 
+            "specular": [0.0, 0.0, 0.0],
+            "shininess": 0
+        }
+    ],"objects": [
+        {
+            "name": "ground", 
+            "type": "plane",
+            "normal": [0.0, 1.0, 0.0],
+            "position": [0.0, 0.0, 0.0],
+            "materials": ["white", "black"]
+        },
+        {
+            "name": "holed_cube", 
+            "type": "CSG",
+            "position": [0.0, 0.0, 0.0], 
+            "rotation": [0.0, 30.0, 0.0], 
+            "scale": [1.0, 1.0, 1.0],
+            "operation": "difference",
+            "pair": [
+                {
+                    "name": "round_cube", 
+                    "type": "CSG",
+                    "position": [0.0, 0.0, 0.0], 
+                    "rotation": [0.0, 0.0, 0.0], 
+                    "scale": [1.0, 1.0, 1.0],
+                    "operation": "intersection",
+                    "pair": [
+                        {
+                            "name": "cube", 
+                            "type": "box",
+                            "materials": ["red"], 
+                            "min": [-1, 0, -1], 
+                            "max": [1, 2, 1]
+                        },
+                        {
+                            "name": "sphere",
+                            "type": "sphere",
+                            "radius": 1.35,
+                            "position": [0, 1.0, 0],
+                            "materials": ["blue"]
+                        }
+                    ]
+                },
+                {
+                    "name": "tri_spike", 
+                    "type": "CSG",
+                    "position": [0.0, 1.0, 0.0], 
+                    "rotation": [0.0, 0.0, 0.0], 
+                    "scale": [1.0, 1.0, 1.0],
+                    "operation": "union",
+                    "pair": [
+                        {
+                            "name": "duo_spike", 
+                            "type": "CSG",
+                            "position": [0.0, 0.0, 0.0], 
+                            "rotation": [0.0, 0.0, 0.0], 
+                            "scale": [1.0, 1.0, 1.0],
+                            "operation": "union",
+                            "pair": [
+                                {   
+                                    "name": "sphere1", 
+                                    "type": "node",
+                                    "rotation": [0.0, 0.0, 0.0], 
+                                    "position": [0.0, 0.0, 0.0], 
+                                    "scale": [2.0, 1.0, 1.0],
+                                    "children": [
+                                        {
+                                            "name": "sphere1_geom",
+                                            "type": "sphere",
+                                            "radius": 0.75,
+                                            "position": [0, 0, 0],
+                                            "materials": ["green"]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "sphere2", 
+                                    "type": "node",
+                                    "rotation": [0.0, 0.0, 0.0], 
+                                    "position": [0.0, 0.0, 0.0], 
+                                    "scale": [1.0, 2.0, 1.0],
+                                    "children": [
+                                        {
+                                            "name": "sphere2_geom",
+                                            "type": "sphere",
+                                            "radius": 0.75,
+                                            "position": [0, 0, 0],
+                                            "materials": ["green"]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "sphere3", 
+                            "type": "node",
+                            "rotation": [0.0, 0.0, 0.0], 
+                            "position": [0.0, 0.0, 0.0], 
+                            "scale": [1.0, 1.0, 2.0],
+                            "children": [
+                                {
+                                    "name": "sphere3_geom",
+                                    "type": "sphere",
+                                    "radius": 0.75,
+                                    "position": [0, 0, 0],
+                                    "materials": ["green"]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "lights": [
+        {
+            "name": "light", 
+            "type": "point",
+            "position": [6.0, 8.0, -5.0], 
+            "colour": [1.0, 1.0, 1.0],
+            "power": 0.9,
+            "attenuation": [0.0, 0.0, 1.0]
+        }
+    ]
+}   

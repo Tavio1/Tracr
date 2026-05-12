@@ -1,0 +1,153 @@
+{
+    "resolution": [1280, 720],
+    "AA_jitter": false, 
+    "AA_samples": 3,
+    "ambient": [0.1, 0.1, 0.1],
+    "camera": {
+        "position": [2.0, 4.0, -4.0],
+        "lookAt": [1.0, 0.0, 0.0],
+        "up": [0.0, 1.0, 0.0],
+        "fov": 45.0,  
+        "dof": true,
+        "focal_length": 5.4,
+        "aperture": 0.15,
+        "dof_samples": 8
+    },
+    "materials": [
+        {
+            "name": "grey", 
+            "diffuse": [0.5, 0.5, 0.5], 
+            "specular": [1.0, 1.0, 1.0],
+            "shininess": 100
+        },
+        {
+            "name": "black", 
+            "diffuse": [0.0, 0.0, 0.0], 
+            "specular": [0.0, 0.0, 0.0],
+            "shininess": 0
+        },
+        {
+            "name": "white", 
+            "diffuse": [0.7, 0.7, 0.7], 
+            "specular": [0.0, 0.0, 0.0],
+            "shininess": 0
+        }
+    ],"objects": [
+        {
+            "name": "ground", 
+            "type": "plane",
+            "normal": [0.0, 1.0, 0.0],
+            "position": [0.0, 0.0, 0.0],
+            "materials": ["white", "black"]
+        },
+        {
+            "name": "star",
+            "type": "CSG",
+            "position": [0, 0.2, 0],
+            "rotation": [0, 0, 0],
+            "scale": [1, 1, 1],
+            "operation": "reverse_difference",
+            "pair": [
+                {
+                    "name": "sphere0",
+                    "type": "sphere",
+                    "radius": 0.5,
+                    "position": [0, 0, 0],
+                    "materials": ["grey"]
+                },
+                {
+                    "name": "squares",
+                    "type": "CSG",
+                    "position": [0, 0, 0],
+                    "rotation": [0, 0, 0],
+                    "scale": [1, 1, 1],
+                    "operation": "union",
+                    "pair": [
+                        {
+                            "name": "box1", 
+                            "type": "node",
+                            "rotation": [0,0,0], 
+                            "position": [0,0,0], 
+                            "scale": [1, 1, 1],
+                            "children": [
+                                {
+                                    "name": "box1_geom", 
+                                    "type": "box",
+                                    "materials": ["grey"], 
+                                    "min": [-1, -0.1, -1], 
+                                    "max": [1, 0.1, 1]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "pivot_1",
+                            "type": "CSG",
+                            "position": [0, 0, 0],
+                            "rotation": [0, 30, 0],
+                            "scale": [1, 1, 1],
+                            "operation": "union",
+                            "pair": [
+                                {
+                                    "name": "box3", 
+                                    "type": "instance",
+                                    "position": [0.0, 0.0, 0.0], 
+                                    "rotation": [0.0, 0.0, 0.0], 
+                                    "ref": "box1"
+                                },
+                                {
+                                    "name": "box3", 
+                                    "type": "instance",
+                                    "position": [0.0, 0.0, 0.0], 
+                                    "rotation": [0.0, 30.0, 0.0], 
+                                    "ref": "box1"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "star2", 
+            "type": "instance",
+            "position": [0.0, 0.2, 0.1], 
+            "rotation": [0.0, 20.0, 0.0], 
+            "ref": "star"
+        },
+        {
+            "name": "star3", 
+            "type": "instance",
+            "position": [0.1, 0.4, 0.0], 
+            "rotation": [0.0, -15.0, 0.0], 
+            "ref": "star"
+        },
+        {
+            "name": "star4", 
+            "type": "instance",
+            "position": [2.0, 0.5, 0.0], 
+            "rotation": [0, 0, -20], 
+            "ref": "star"
+        }
+    ],
+    "lights": [
+        {
+            "name": "backlight", 
+            "type": "area",
+            "position": [3.5, 4.0, 4.5], 
+            "colour": [1.0, 1.0, 1.0],
+            "power": 0.5,
+            "attenuation": [0.0, 0.0, 1.0],
+            "direction": [12, -12, -8],
+            "radius": 0.1,
+            "samples": 6 
+        },
+        {
+            "name": "accent", 
+            "type": "point",
+            "position": [-1.0, 3.0, -5.0], 
+            "colour": [1.0, 0, 0],
+            "power": 0.3,
+            "attenuation": [0.0, 0.0, 1.0]
+        }
+    ]
+}   

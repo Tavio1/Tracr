@@ -1,0 +1,6 @@
+This image is created using the extra features I have added to my ray tracer. The gear objects in the center are created
+using the Constructive Solid Geometry system I created, by unioning 3 flattened & rotated cubes, and then subtracting a 
+sphere from the center. I also used the instancing and node system to reuse the CSG gear object, also allowing me to make
+modifications to the gear that are reflected in every instance of it. There is also a Depth of Field effect, focused on 
+the gears, but is out of focus around the edges of the image. And lastly, I used a small area light I created to do the 
+backlighting of the image to just soften the shadows casted in the front of the image a bit.

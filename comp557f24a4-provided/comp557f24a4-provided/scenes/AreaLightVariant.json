@@ -1,0 +1,99 @@
+{
+    "resolution": [238, 100],
+    "AA_jitter": false, 
+    "AA_samples": 4,
+    "ambient": [0.1, 0.1, 0.1],
+    "camera": {
+        "position": [0.0, 8.0, 8.0],
+        "lookAt": [0.0, 2.0, 0.0],
+        "up": [0.0, 1.0, 0.0],
+        "fov": 45.0
+    },
+    "materials": [
+        {
+            "name": "blue",  
+            "diffuse": [0.0, 0.0, 1.0], 
+            "specular": [0.5, 0.5, 0.5],
+            "shininess": 16
+        },
+        {
+            "name": "green",  
+            "diffuse": [0.0, 1.0, 0.0], 
+            "specular": [0.5, 0.5, 0.5],
+            "shininess": 50
+        },
+        {
+            "name": "black", 
+            "diffuse": [0.0, 0.0, 0.0], 
+            "specular": [0.0, 0.0, 0.0],
+            "shininess": 0
+        },
+        {
+            "name": "white", 
+            "diffuse": [1.0, 1.0, 1.0], 
+            "specular": [0.0, 0.0, 0.0],
+            "shininess": 0
+        }
+    ],    
+    "objects": [
+        {
+            "name": "plane", "type": "plane",
+            "normal": [0.0, 1.0, 0.0],
+            "position": [0.0, 0.0, 0.0],
+            "materials": ["white", "white"]
+        },
+        {
+            "name": "boxStack", 
+            "type": "node",
+            "position": [-3.0, 0.0, -2.0], 
+            "rotation": [0.0, 50.0, 0.0], 
+            "scale": [1.5, 1.5, 1.5],
+            "children": [
+                {
+                    "name": "box1", 
+                    "type": "node",
+                    "rotation": [0.0, 0.0, 0.0], 
+                    "position": [0.0, 0.0, 0.0], 
+                    "scale": [1.0, 1.0, 1.0],
+                    "children": [
+                        {
+                            "name": "box1_geom", 
+                            "type": "box",
+                            "materials": ["blue"], 
+                            "min": [-1, 0, -1], 
+                            "max": [1, 2, 1]
+                        },
+                        {
+                            "name": "box2", 
+                            "type": "node",
+                            "rotation": [0.0, 12.0, 0.0], 
+                            "position": [0.0, 2.0, 0.0], 
+                            "scale": [0.5, 0.5, 0.5],
+                            "children": [
+                                {
+                                    "name": "box2_geom", 
+                                    "type": "box",
+                                    "materials": ["green"],  
+                                    "min": [-1, 0, -1], 
+                                    "max": [1, 2, 1]
+                                }                               
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }    
+    ],
+    "lights": [
+        {
+            "name": "light",
+            "type": "area",
+            "position": [-12.0, 12.0, 8.0],
+            "colour": [0.8, 0.8, 0.8],
+            "power": 300,
+            "direction": [12, -12, -8],
+            "radius": 3,
+            "samples": 32
+        }
+    ]
+}
